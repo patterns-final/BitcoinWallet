@@ -1,14 +1,17 @@
 import secrets
 import re
+import math
 
 from src.core.interfaces.api_key_generator import ApiKeyGeneratorInterface
 
 class ApiKeyGenerator(ApiKeyGeneratorInterface):
-    EXPECTED_KEY_LENGTH = 43
+    TOKEN_BYTES = 32
+
+    EXPECTED_KEY_LENGTH = math.ceil(TOKEN_BYTES * 4 / 3)
     KEY_PATTERN = re.compile(r'^[A-Za-z0-9_-]+$')
 
     def generate_api_key(self) -> str:
-        return secrets.token_urlsafe(32)
+        return secrets.token_urlsafe(self.TOKEN_BYTES)
 
     def validate_api_key_format(self, api_key: str) -> bool:
         if not isinstance(api_key, str):
