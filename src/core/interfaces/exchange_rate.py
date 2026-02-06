@@ -13,3 +13,6 @@ class ExchangeRateInterface(ABC):
     @abstractmethod
     def btc_to_usd(self, btc: Decimal) -> Decimal:
         raise NotImplementedError
+
+class ExchangeRateError(Exception):
+    pass
