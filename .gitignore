@@ -3,3 +3,7 @@ env/
 .env
 *.sqlite
 .idea/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
