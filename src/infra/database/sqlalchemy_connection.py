@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 from src.config import settings
 
 
-engine = create_engine(settings.DATABASE_URL)
+engine = create_engine(settings.database_url)
 
 def get_sqlalchemy_session() -> Generator[Session, None, None]:
     session = Session(engine)
