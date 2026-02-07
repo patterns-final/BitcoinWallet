@@ -4,6 +4,7 @@ import uuid
 from dataclasses import dataclass
 from datetime import datetime, UTC
 from typing import Optional
+from decimal import Decimal
 
 @dataclass
 class Transaction:
@@ -14,6 +15,8 @@ class Transaction:
     is_internal_transfer: bool = False
     id: Optional[str] = None
     created_at: Optional[datetime] = None
+
+    FEE_RATE = Decimal("0.015")
 
     @classmethod
     def create(
@@ -33,7 +36,11 @@ class Transaction:
         if from_wallet_address == to_wallet_address:
             raise ValueError("Cannot transfer to the same wallet")
 
-        fee_satoshis = 0 if is_internal_transfer else int(amount_satoshis * 0.015)
+        if is_internal_transfer:
+            fee_satoshis = 0
+        else:
+            fee_decimal = Decimal(amount_satoshis) * cls.FEE_RATE
+            fee_satoshis = round(fee_decimal)
 
         return cls(
             id=str(uuid.uuid4()),
