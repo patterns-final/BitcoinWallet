@@ -28,3 +28,19 @@ class TestWallet:
         wallet = Wallet.create("user_123")
         with pytest.raises(ValueError, match="Deposit amount must be positive"):
             wallet.deposit(-1)
+
+    def test_withdraw_success(self):
+        wallet = Wallet.create("user_123")
+        initial_balance = wallet.balance_satoshis
+        wallet.withdraw(50_000_000)
+        assert wallet.balance_satoshis == initial_balance - 50_000_000
+
+    def test_withdraw_insufficient_balance_raises_error(self):
+        wallet = Wallet.create("user_123")
+        with pytest.raises(ValueError, match="Insufficient balance"):
+            wallet.withdraw(wallet.balance_satoshis + 1)
+
+    def test_withdraw_invalid_amount_raises_error(self):
+        wallet = Wallet.create("user_123")
+        with pytest.raises(ValueError, match="Withdrawal amount must be positive"):
+            wallet.withdraw(-1)

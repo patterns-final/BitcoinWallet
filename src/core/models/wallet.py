@@ -24,3 +24,10 @@ class Wallet:
         if amount_satoshis <= 0:
             raise ValueError("Deposit amount must be positive")
         self.balance_satoshis += amount_satoshis
+
+    def withdraw(self, amount_satoshis: int) -> None:
+        if amount_satoshis <= 0:
+            raise ValueError("Withdrawal amount must be positive")
+        if amount_satoshis > self.balance_satoshis:
+            raise ValueError("Insufficient balance")
+        self.balance_satoshis -= amount_satoshis
