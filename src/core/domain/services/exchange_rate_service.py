@@ -1,7 +1,7 @@
 import requests
 from decimal import Decimal
 
-from src.core.interfaces.exchange_rate import ExchangeRateInterface, ExchangeRateError
+from src.core.domain.interfaces.exchange_rate import ExchangeRateInterface, ExchangeRateError
 
 
 class ExchangeRateService(ExchangeRateInterface):

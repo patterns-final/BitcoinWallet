@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Optional
 
-from src.core.models.user import User
+from src.core.domain.models.user import User
 
 
 class UserRepositoryInterface(ABC):

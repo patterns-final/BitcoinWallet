@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 
-from src.core.interfaces.api_key_generator import ApiKeyGeneratorInterface
-from src.core.interfaces.user_repository import UserRepositoryInterface
-from src.core.models.user import User
+from src.core.domain.interfaces.api_key_generator import ApiKeyGeneratorInterface
+from src.core.domain.interfaces.user_repository import UserRepositoryInterface
+from src.core.domain.models.user import User
 
 @dataclass
 class UserRegistrationResult:

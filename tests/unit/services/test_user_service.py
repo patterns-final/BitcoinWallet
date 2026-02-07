@@ -1,9 +1,9 @@
 import pytest
 from unittest.mock import Mock
-from src.core.services.user_service import UserService, UserRegistrationResult
-from src.core.models.user import User
-from src.core.interfaces.api_key_generator import ApiKeyGeneratorInterface
-from src.core.interfaces.user_repository import UserRepositoryInterface
+from src.core.use_cases.user_service import UserService, UserRegistrationResult
+from src.core.domain.models import User
+from src.core.domain.interfaces.api_key_generator import ApiKeyGeneratorInterface
+from src.core.domain.interfaces import UserRepositoryInterface
 
 
 class TestUserService:

@@ -2,7 +2,7 @@ import secrets
 import re
 import math
 
-from src.core.interfaces.api_key_generator import ApiKeyGeneratorInterface
+from src.core.domain.interfaces.api_key_generator import ApiKeyGeneratorInterface
 
 class ApiKeyGenerator(ApiKeyGeneratorInterface):
     TOKEN_BYTES = 32

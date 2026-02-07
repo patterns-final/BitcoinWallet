@@ -3,8 +3,8 @@ from decimal import Decimal
 from unittest.mock import Mock, patch
 import requests
 
-from src.core.services.exchange_rate_service import ExchangeRateService
-from src.core.interfaces.exchange_rate import ExchangeRateError
+from src.core.domain.services import ExchangeRateService
+from src.core.domain.interfaces.exchange_rate import ExchangeRateError
 
 
 class TestExchangeRateService:
