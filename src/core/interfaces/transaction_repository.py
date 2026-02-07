@@ -13,10 +13,6 @@ class TransactionRepositoryInterface(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def get_all(self)-> list[Transaction]:
-        raise NotImplementedError
-
-    @abstractmethod
     def get_by_wallet_address(self, wallet_address: str) ->  list[Transaction]:
         raise NotImplementedError
 
