@@ -27,7 +27,7 @@ class Settings(BaseSettings):
     def database_url(self) -> str:
         return f"sqlite:///{self.sqlite_path}"
 
-    MIGRATIONS_PATH: str = str(ROOT_DIR / "src" / "infra" / "migrations")
+    MIGRATIONS_PATH: str = str(ROOT_DIR / "src" / "migrations")
 
     ADMIN_API_KEY: str = "admin-api-key"   # declared in .env file
 
