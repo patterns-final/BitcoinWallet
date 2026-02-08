@@ -6,14 +6,13 @@ from src.core.models.transaction import Transaction
 from src.infra.database.models import TransactionModel
 
 
-class SQLTransactionRepository(TransactionRepositoryInterface):
+class SQLAlchemyTransactionRepository(TransactionRepositoryInterface):
     def __init__(self, session: Session) -> None:
         self._session = session
 
     def save(self, transaction: Transaction) -> None:
         model = self._to_db_model(transaction)
         self._session.add(model) #Service layer will handle session commits
-        self._session.flush()
 
     def get_by_id(self, transaction_id: str) -> Optional[Transaction]:
         model = (
