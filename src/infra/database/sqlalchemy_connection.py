@@ -1,15 +1,12 @@
 from typing import Generator
 
-from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 
-from src.config import settings
+from src.infra.database.init_db import engine
 
-
-engine = create_engine(settings.database_url)
 
 def get_sqlalchemy_session() -> Generator[Session, None, None]:
-    session = Session(engine)
+    session = Session(bind=engine)
     try:
         yield session
     finally:

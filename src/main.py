@@ -4,7 +4,7 @@ from fastapi import FastAPI
 
 from src.api.routes import user_router
 from src.config import settings, Settings
-from src.infra.database.migrate import run_migrations
+from src.infra.database.init_db import init_db
 
 
 def create_app(settings: Settings) -> FastAPI:
@@ -18,13 +18,9 @@ def create_app(settings: Settings) -> FastAPI:
 
     app.state.settings = settings
 
-    @app.on_event("startup")
-    def _startup() -> None:
-        run_migrations(db_path=settings.sqlite_path)
-
     return app
 
-
+init_db()
 app = create_app(settings)
 
 
