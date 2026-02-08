@@ -33,9 +33,6 @@ class Transaction:
         if not from_wallet_address or not to_wallet_address:
             raise ValueError("Wallet addresses cannot be empty")
 
-        if from_wallet_address == to_wallet_address:
-            raise ValueError("Cannot transfer to the same wallet")
-
         if is_internal_transfer:
             fee_satoshis = 0
         else:
@@ -57,6 +54,3 @@ class Transaction:
 
     def get_recipient_amount(self) -> int:
         return self.amount_satoshis - self.fee_satoshis
-
-    def is_same_wallet_transfer(self) -> bool:
-        return self.from_wallet_address == self.to_wallet_address
