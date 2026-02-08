@@ -19,7 +19,7 @@ class WalletModel(Base):
     id = Column(String, primary_key=True)
     address = Column(String, nullable=False, unique=True, index=True)
     user_id = Column(String, ForeignKey("users.id"), nullable=False)
-    balance_satoshis = Column(Integer, nullable=False)
+    balance_satoshi = Column(Integer, nullable=False)
 
     user = relationship("UserModel", back_populates="wallets")
 

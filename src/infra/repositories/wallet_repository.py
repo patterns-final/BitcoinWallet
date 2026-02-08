@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 
 from src.core.interfaces.wallet_repository import WalletRepositoryInterface
 from src.core.models.wallet import Wallet
-from src.infra.models import WalletModel
+from src.infra.database.models import WalletModel
 
 
 class WalletNotFound(Exception):

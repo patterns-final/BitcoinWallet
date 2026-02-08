@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 
 from src.core.interfaces.user_repository import UserRepositoryInterface
 from src.core.models.user import User
-from src.infra.models import UserModel
+from src.infra.database.models import UserModel
 
 
 class SQLAlchemyUserRepository(UserRepositoryInterface):
