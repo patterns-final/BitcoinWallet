@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 
 from src.core.interfaces.user_repository import UserRepositoryInterface
 from src.core.models.user import User
-from src.infra.models import UserModel
+from src.infra.database.models import UserModel
 
 
 class SQLAlchemyUserRepository(UserRepositoryInterface):
@@ -19,8 +19,6 @@ class SQLAlchemyUserRepository(UserRepositoryInterface):
         else:
             new_user = self._to_db_model(user)
             self.session.add(new_user)
-
-        self.session.commit()
 
     def get_by_id(self, user_id: str) -> Optional[User]:
         db_user = self.session.query(UserModel).filter(UserModel.id == user_id).first()

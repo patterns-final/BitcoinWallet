@@ -9,6 +9,5 @@ def test_user_create_response_from_result():
 
     response = UserCreateResponse.from_result(result)
 
-    assert response.id == "test-uuid-123"
     assert response.api_key == "sk_test_key"
     assert isinstance(response, UserCreateResponse)

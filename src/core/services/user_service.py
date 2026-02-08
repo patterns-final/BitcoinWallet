@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 
 from src.core.interfaces.api_key_generator import ApiKeyGeneratorInterface
+from src.core.interfaces.unit_of_work import UnitOfWorkInterface
 from src.core.interfaces.user_repository import UserRepositoryInterface
 from src.core.models.user import User
 
@@ -14,9 +15,11 @@ class UserService:
 
     def __init__(
             self,
+            uow: UnitOfWorkInterface,
             user_repository: UserRepositoryInterface,
             api_key_generator: ApiKeyGeneratorInterface
     ) -> None:
+        self._uow = uow
         self._user_repository = user_repository
         self._api_key_generator = api_key_generator
 
@@ -28,6 +31,7 @@ class UserService:
             raise ValueError("Failed to create user")
 
         self._user_repository.save(user)
+        self._uow.commit()
 
         return UserRegistrationResult(
             user_id=user.id,

@@ -11,12 +11,10 @@ class UserCreateRequest(BaseModel):
 class UserCreateResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
-    id: str
     api_key: str
 
     @classmethod
     def from_result(cls, result: UserRegistrationResult) -> UserCreateResponse:
         return cls(
-            id=result.user_id,
             api_key=result.api_key
         )
