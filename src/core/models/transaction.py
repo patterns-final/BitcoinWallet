@@ -57,6 +57,3 @@ class Transaction:
 
     def get_recipient_amount(self) -> int:
         return self.amount_satoshis - self.fee_satoshis
-
-    def is_same_wallet_transfer(self) -> bool:
-        return self.from_wallet_address == self.to_wallet_address
