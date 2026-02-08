@@ -20,8 +20,6 @@ class SQLAlchemyUserRepository(UserRepositoryInterface):
             new_user = self._to_db_model(user)
             self.session.add(new_user)
 
-        self.session.commit()
-
     def get_by_id(self, user_id: str) -> Optional[User]:
         db_user = self.session.query(UserModel).filter(UserModel.id == user_id).first()
         return self._to_domain(db_user) if db_user else None
