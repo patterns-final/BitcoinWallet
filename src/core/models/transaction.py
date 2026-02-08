@@ -33,6 +33,9 @@ class Transaction:
         if not from_wallet_address or not to_wallet_address:
             raise ValueError("Wallet addresses cannot be empty")
 
+        if from_wallet_address == to_wallet_address:
+            raise ValueError("Cannot transfer to the same wallet")
+
         if is_internal_transfer:
             fee_satoshis = 0
         else:
